@@ -10,7 +10,7 @@ Route::get('/random', function () {
     return $key;
 });
 
-Route::middleware(['api','tracker'])->group( function () {
+Route::middleware(['api','tracker'])->prefix('logger')->group( function () {
     Route::get("/", [LoggerController::class,"index"]);
     Route::get("filters", [LoggerController::class,"filters"]);
     Route::post("/{id}/delete", [LoggerController::class,"destroy"]);
