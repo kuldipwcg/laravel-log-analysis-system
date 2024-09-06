@@ -1,0 +1,41 @@
+/* Container for the skeleton component */
+.skeleton-container {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  
+  /* Main content container for the skeleton items */
+  .skeleton-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 80%;
+    clear: both;
+  }
+  
+  /* Individual skeleton item styles */
+  .skeleton-item {
+    background: linear-gradient(to right, #de94f5 25%, #cdb7df 50%, #c47ca8 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    height: 20px; /* Adjust the height as needed */
+    margin-bottom: 30px; /* Adjust the spacing between items */
+    border-radius: 12px;
+  }
+  
+  /* Animation for the skeleton item */
+  @keyframes loading {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  /* Custom class for adding a glow effect to the skeleton */
+  .placeholder-glow {
+    /* Add glow styles here */
+  }
+  
