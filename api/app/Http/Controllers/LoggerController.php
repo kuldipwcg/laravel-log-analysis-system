@@ -30,7 +30,7 @@ class LoggerController extends Controller
         $levels = $obj->pluck("level", "level")->toArray();
         $level_names = $obj->pluck("level_name", "level_name")->toArray();
         $channels = $obj->pluck("channel", "channel")->toArray();
-        return compact("levels", "level_names", "channels");
+        return response()->json(compact("levels", "level_names", "channels"));
     }
 
     /**
@@ -52,7 +52,7 @@ class LoggerController extends Controller
                 $q->where("channel", $request->filter_channel);
             }
         };
-        return $obj
+        return response()->json($obj
             ->where($whereClosure)
             ->select([
                 "id",
@@ -65,7 +65,7 @@ class LoggerController extends Controller
                 "datetime",
                 "extra",
             ])->orderBy('datetime','DESC')
-            ->paginate();
+            ->paginate());
     }
 
     /**
@@ -77,7 +77,7 @@ class LoggerController extends Controller
     public function show($id)
     {
         $obj = (new Logger())->setMongoCollection($this->table);
-        return $obj->where("_id", $id)->firstOrFail();
+        return response()->json($obj->where("_id", $id)->firstOrFail());
     }
 
     /**
@@ -90,7 +90,7 @@ class LoggerController extends Controller
     public function update(Request $request, $id)
     {
         $obj = (new Logger())->setMongoCollection($this->table);
-        return $obj->where("_id", $id)->update($request->input());
+        return response()->json($obj->where("_id", $id)->update($request->input()));
     }
 
     /**
@@ -102,6 +102,6 @@ class LoggerController extends Controller
     public function destroy($id)
     {
         $obj = (new Logger())->setMongoCollection($this->table);
-        return $obj->where("_id", $id)->delete();
+        return response()->json($obj->where("_id", $id)->delete());
     }
 }
