@@ -22,6 +22,10 @@ class LoggerController extends Controller
      */
     public function filters()
     {
+
+        // $obj = (new Logger())->setMongoCollection($this->table);
+        // return $obj->whereNotNull("_id")->delete();
+
         $obj = (new Logger())->setMongoCollection($this->table);
         $levels = $obj->pluck("level", "level")->toArray();
         $level_names = $obj->pluck("level_name", "level_name")->toArray();
@@ -60,7 +64,7 @@ class LoggerController extends Controller
                 "channel",
                 "datetime",
                 "extra",
-            ])
+            ])->orderBy('datetime','DESC')
             ->paginate();
     }
 

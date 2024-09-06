@@ -25,7 +25,7 @@ class Tracker
             'inputs' => $request->input(),
             'visitor' => $request->ip(),
         ];
-        \Log::info(json_encode($data));
+        \Log::info(serialize($data));
 
         $response = $next($request);
         return $response;

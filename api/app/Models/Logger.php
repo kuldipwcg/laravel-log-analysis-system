@@ -17,4 +17,8 @@ class Logger extends Model
         $this->collection = $currentCollection;
         return $this;
     }
+
+    public function getMessageAttribute(){
+        return $this->attributes['message'] ? unserialize($this->attributes['message']) : [];
+    }
 }
