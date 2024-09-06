@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Tracker {
+class Tracker
+{
 
     /**
      **
@@ -12,18 +13,19 @@ class Tracker {
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next) {
+    public function handle($request, Closure $next)
+    {
 
         $headers = $request->header();
         unset($headers['cookie']);
 
         $data = [
-            'url'=>$request->fullUrl(),
-            'headers'=>$headers,
-            'inputs'=>$request->input(),
-            'visitor'=>$request->ip(),
+            'url' => $request->fullUrl(),
+            'headers' => $headers,
+            'inputs' => $request->input(),
+            'visitor' => $request->ip(),
         ];
-        \Log::info($data);
+        \Log::info(json_encode($data));
 
         $response = $next($request);
         return $response;
