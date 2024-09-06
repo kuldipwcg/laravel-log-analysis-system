@@ -5,10 +5,11 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8022:8000"
+      - "8002:8000"
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
+    container_name: log_app
   mongodb:
     image: mongo:3.6-xenial
     environment:

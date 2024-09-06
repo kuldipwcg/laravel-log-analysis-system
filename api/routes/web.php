@@ -10,7 +10,7 @@ Route::get('/', function () {
     return $key;
 });
 
-Route::group(["prefix" => "logger"], function () {
+Route::middleware('api')->group(["prefix" => "logger"], function () {
     Route::get("/", "LoggerController@index");
     Route::get("filters", "LoggerController@filters");
     Route::post("/{id}/delete", "LoggerController@destroy");
