@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8022:8000"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+  mongodb:
+    image: mongo:3.6-xenial
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    restart: always
+    ports:
+      - 27010:27017
+    volumes:
+      - ./storage/logs/mongodb:/var/lib/mongodb
+      - ./mongod.conf:/etc/mongod.conf.orig
+    container_name: mongodb
