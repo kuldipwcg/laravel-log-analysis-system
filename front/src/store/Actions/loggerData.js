@@ -16,6 +16,9 @@ const loggerAction = serverApi.injectEndpoints({
             }, {
               key : "filter_level", 
               value: payload?.filter_level?.selectedKey
+            },{
+              key : "page",
+              value: payload?.page ?? 1
             }
           ];
 
@@ -25,11 +28,11 @@ const loggerAction = serverApi.injectEndpoints({
 
           return config(
             "GET",
-            `/logger?${resultString.join('&')}&page=${payload?.page ?? 1}`
+            `/logger?${resultString.join('&')}`
           );
 
         } else {
-          return config("GET", `/logger?page=${payload?.page ?? 1}`);
+          return config("GET", `/logger`);
         }
       },
       transformResponse: (data) => {
