@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8002:8000"
+    volumes:
+      - ./storage/:/app/storage
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
