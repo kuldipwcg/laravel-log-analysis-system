@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Common\Common;
 use Closure;
 
 class Tracker {
@@ -17,8 +16,14 @@ class Tracker {
 
         $headers = $request->header();
         unset($headers['cookie']);
-        \Log::info('headers= '.json_encode($headers));
-        \Log::info('data= '.json_encode($request->input() + ['ip' => $request->ip()]));
+
+        $data = [
+            'url'=>$request->fullUrl(),
+            'headers'=>$headers,
+            'inputs'=>$request->input(),
+            'visitor'=>$request->ip(),
+        ];
+        \Log::info($data);
 
         $response = $next($request);
         return $response;
