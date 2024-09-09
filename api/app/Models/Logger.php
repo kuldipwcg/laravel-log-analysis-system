@@ -18,7 +18,13 @@ class Logger extends Model
         return $this;
     }
 
-    // public function getMessageAttribute(){
-    //     return $this->attributes['message'] ? unserialize($this->attributes['message']) : [];
-    // }
+    public function getMessageAttribute()
+    {
+        try {
+            return unserialize($this->attributes['message']);
+        } catch (\Throwable $th) {
+            return $this->attributes['message'];
+            //throw $th;
+        }
+    }
 }

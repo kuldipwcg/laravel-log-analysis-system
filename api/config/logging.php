@@ -57,7 +57,7 @@ return [
             "handler" => \Monolog\Handler\MongoDBHandler::class,
             "formatter" => \Monolog\Formatter\MongoDBFormatter::class,
             "formatter_with" => [
-                "maxNestingLevel" => 10,
+                "maxNestingLevel" => 20,
             ],
             "handler_with" => [
                 "mongodb" => new \MongoDB\Client(

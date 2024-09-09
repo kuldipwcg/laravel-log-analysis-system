@@ -7,7 +7,7 @@ services:
     ports:
       - "8002:8000"
     volumes:
-      - ./storage/:/app/storage
+      - ./:/app/
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
