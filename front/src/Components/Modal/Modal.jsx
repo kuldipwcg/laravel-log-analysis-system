@@ -1,14 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { capitalizeFirstLetter, dateFunction, timeFunction } from "Module/util";
+import { capitalizeFirstLetter, dateFunction, timeFunction,renderMessage } from "Module/util";
+
 import { Fragment, useRef, useState } from "react";
 
 export default function Modal({ data, openModal, setOpenModal }) {
   const cancelButtonRef = useRef(null);
-  // read more state
-  const [isReadMore, setIsReadMore] = useState(true);
-  const toggleReadMore = () => {
-    setIsReadMore(!isReadMore);
-  };
   return (
     <Transition.Root appear show={openModal} as={Fragment}>
       <Dialog
@@ -93,22 +89,12 @@ export default function Modal({ data, openModal, setOpenModal }) {
                         <div className="mb-2 flex gap-4 ">
                           <div className="">
                             <span className="p-1 rounded-md text-gray-600 border-2 border-slate-400 ">
-                              Message
+                              Content
                             </span>
                           </div>
 
                           <div className="w-3/4 transition-all ease-in-out delay-700  ">
-                            {isReadMore
-                              ? `${data?.message.slice(0, 150)}...`
-                              : data?.message}
-                            {data?.message.length > 150 && (
-                              <button
-                                onClick={toggleReadMore}
-                                className={`p-1 rounded-md text-gray-600 border-b-2 border-slate-400   text-[12px] text-xs font-semibold `}
-                              >
-                                {isReadMore ? "read more" : "show less"}
-                              </button>
-                            )}
+                          {renderMessage(data?.message)}
                           </div>
                         </div>
                         {/* Level  */}
