@@ -12,7 +12,7 @@ class LoggerController extends Controller
 
     function __construct()
     {
-        $this->table = 'app_logs';
+        $this->table = 'laravel_logs';
     }
 
     /**
