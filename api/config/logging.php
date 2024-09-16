@@ -52,7 +52,7 @@ return [
 
     'channels' => [
 
-        "mongolog" => [
+"mongolog" => [
             "driver" => "monolog",
             "handler" => \Monolog\Handler\MongoDBHandler::class,
             "formatter" => \Monolog\Formatter\MongoDBFormatter::class,
@@ -62,19 +62,18 @@ return [
             "handler_with" => [
                 "mongodb" => new \MongoDB\Client(
                     "mongodb://" .
-                        env("MN_DB_USERNAME", "admin") .
+                        env("LOG_USERNAME") .
                         ":" .
-                        env("MN_DB_PASSWORD", "admin") .
+                        env("LOG_PASSWORD") .
                         "@" .
-                        env("MN_DB_HOST", "mongodb") .
+                        env("LOG_HOST") .
                         ":" .
-                        env("MN_DB_PORT", "27017")
+                        env("LOG_PORT")
                 ),
-                "database" => env("MN_DB_DATABASE", "hwfclubs"),
-                "collection" => env("MN_DB_LOGS_COLLECTION", "app_logs"),
+                "database" => env("LOG_DATABASE", "application_logs"),
+                "collection" => 'laravel_logs',
             ],
         ],
-
         'stack' => [
             'driver' => 'stack',
             'channels' => explode(',', env('LOG_STACK', 'single')),

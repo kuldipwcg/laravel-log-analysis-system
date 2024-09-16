@@ -16,16 +16,16 @@ class Tracker
     public function handle($request, Closure $next)
     {
 
-        $headers = $request->header();
-        unset($headers['cookie']);
+        // $headers = $request->header();
+        // unset($headers['cookie']);
 
-        $data = [
-            'url' => $request->fullUrl(),
-            'headers' => $headers,
-            'inputs' => $request->input(),
-            'visitor' => $request->ip(),
-        ];
-        \Log::info(serialize($data));
+        // $data = [
+        //     'url' => $request->fullUrl(),
+        //     'headers' => $headers,
+        //     'inputs' => $request->input(),
+        //     'visitor' => $request->ip(),
+        // ];
+        // \Log::info(serialize($data));
 
         $response = $next($request);
         return $response;

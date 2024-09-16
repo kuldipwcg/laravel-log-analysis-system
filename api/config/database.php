@@ -44,11 +44,11 @@ return [
 
         "mongodb" => [
             "driver" => "mongodb",
-            "host" => env("MN_DB_HOST", "mongodb"),
-            "port" => env("MN_DB_PORT", "27017"),
-            "database" => env("MN_DB_DATABASE", "hwfclubs"),
-            "username" => env("MN_DB_USERNAME", "admin"),
-            "password" => env("MN_DB_PASSWORD", "admin"),
+            "host" => env("LOG_HOST", "mongodb"),
+            "port" => env("LOG_PORT", ""),
+            "database" => env("LOG_DATABASE", ""),
+            "username" => env("LOG_USERNAME", ""),
+            "password" => env("LOG_PASSWORD", ""),
         ],
 
         'mysql' => [
